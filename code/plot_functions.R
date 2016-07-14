@@ -17,6 +17,7 @@ time_plot <- function(n, g, data){
 	axis(2, las=2)
 	box()
 
+	text(x=1900, y=par()$usr[4]*0.95, label=n, cex=1.5, pos=4, font=2)
 	legend("topright", legend=c("Born", "Alive"), lwd=2, lty=1, col=c("black", clr), bty="n")
 
 	mtext(side=1, line=2.5, "Year")
@@ -24,7 +25,7 @@ time_plot <- function(n, g, data){
 }
 
 
-distro_plot <- function(n_vector, g_vector, age_vector, data, age){
+distro_plot <- function(n_vector, g_vector, age_vector, data){
 
 	thick <- 0.15
 
@@ -42,7 +43,7 @@ distro_plot <- function(n_vector, g_vector, age_vector, data, age){
 		polygon(x=c(distribution[1], distribution[1], distribution[3], distribution[3]), y=c(i-thick, i+thick, i+thick, i-thick), col=clr)
 
 		points(x=distribution[2], y=i, pch=19, col="black", cex=1)
-		points(x=age[i], y=i, pch=19, col="red")
+		points(x=age_vector[i], y=i, pch=19, col="red")
 	}
 
 	axis(1)
