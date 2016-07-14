@@ -1,0 +1,33 @@
+---
+title: "Schloss family name report"
+author: "Pat Schloss"
+date: "July 14, 2016"
+output: html_document
+---
+
+```{r preliminaries, echo=F, eval=T}
+data <- read.table(file="data/processed/total_and_living_name_counts.csv")
+source('code/plot_functions.R')
+```
+
+These are number of people born (black line) and still alive (colored line) for each person's name. The year that represents the median for people still alive with that name is represented by a thicker line.
+
+```{r time_plots, echo=F}
+time_plot("Patrick", "M", data)
+time_plot("Joseph", "M", data)
+time_plot("John", "M", data)
+time_plot("Jacob", "M", data)
+time_plot("Peter", "M", data)
+time_plot("Ruth", "F", data)
+time_plot("Mary", "F", data)
+time_plot("Martha", "F", data)
+```
+
+Here is the 50% confidence interval for each Schloss kid indicated by the rectangle along with the median predicted age (black dot) and their actual age (red dot):
+
+```{r distro_plot, echo=F}
+n_vector <- c("Mary", "Patrick", "Joseph", "John", "Ruth", "Jacob", "Peter", "Martha")
+g_vector <- c("F", "M", "M", "M", "F", "M", "M", "F")
+age <- c(15, 13, 11, 9, 6, 4,3,1)
+distro_plot(n_vector, g_vector, age, data)
+```
