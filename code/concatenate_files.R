@@ -17,5 +17,11 @@ name_files <- list.files(path='data/raw', pattern="yob.*.txt", full.names=TRUE)
 name_data_frames <- lapply(name_files, make_year_data_frame)
 merged_names <- do.call(rbind, name_data_frames)
 colnames(merged_names) <- c("name", "gender", "frequency", "year")
+
+
+# comment out the following two lines to get all names
+kids <- c("Sarah", "Mary", "Patrick", "Joseph", "John", "Ruth", "Jacob", "Peter", "Martha")
+merged_names <- merged_names[merged_names$name %in% kids,]
+
 write.table(file="data/processed/all_names.csv", merged_names, sep=',',
 						row.names=F, quote=F)
