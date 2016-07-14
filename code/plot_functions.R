@@ -23,5 +23,32 @@ time_plot <- function(n, g, data){
 	mtext(side=2, line=4, "Number of Individuals")
 }
 
-distro <- quantile(rep(name_data$year, round(name_data$alive)),
-										probs=c(0.25,0.5,0.75))
+
+distro_plot <- function(n_vector, g_vector, age_vector, data, age){
+
+	thick <- 0.15
+
+	par(mar=c(4,6,0.5,0.5))
+
+	plot(NA, xlim=c(0,100), ylim=c(1,length(n_vector)), xlab="", ylab="", axes=F)
+
+	for(i in 1:length(n_vector)){
+
+		clr <- ifelse(g_vector[i]=="M", "dodgerblue", "pink")
+
+		name_data <- subset(data, name == n_vector[i] & gender == g_vector[i])
+		distribution <- 2016-quantile(rep(name_data$year, round(name_data$alive)), probs=c(0.25, 0.5, 0.75))
+
+		polygon(x=c(distribution[1], distribution[1], distribution[3], distribution[3]), y=c(i-thick, i+thick, i+thick, i-thick), col=clr)
+
+		points(x=distribution[2], y=i, pch=19, col="black", cex=1)
+		points(x=age[i], y=i, pch=19, col="red")
+	}
+
+	axis(1)
+	mtext(side=1, line=2.5, "Age")
+
+	axis(2, at=1:length(n_vector), label=n_vector, las=2)
+	box()
+
+}
