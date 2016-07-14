@@ -4,7 +4,7 @@
 # Assumes:
 #		*	the user is connected to the internet
 #		* has R installed in their PATH
-#		* has rmarkdown package installed				
+#		* has rmarkdown package installed
 
 # Depends on: website data at https://www.ssa.gov/oact/babynames/names.zip
 # Produces: slew of files named yob????.txt and a pdf file
@@ -18,7 +18,7 @@ unzip -d data/raw/ data/raw/names.zip
 R CMD BATCH code/concatenate_files.R
 
 # Fills in missing data from annual survivorship data
-# Depends on: data/raw/alive_per_100k.csv
+# Depends on: data/raw/alive_2016_per_100k.csv.csv
 #							code/interpolate_mortality.R
 #	Produces:		data/processed/alive_2016_annual.csv
 R CMD BATCH code/interpolate_mortality.R

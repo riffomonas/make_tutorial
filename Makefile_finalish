@@ -21,25 +21,25 @@ YOBTXT=$(addsuffix .txt,$(YOB))
 # Produces: slew of files named yob????.txt and a pdf file
 
 $(YOBTXT) :
-	wget -nc --no-check-certificate -O -P data/raw https://www.ssa.gov/oact/babynames/names.zip
-	unzip -u -d data/raw data/raw/names.zip
+	wget -nc --no-check-certificate -P $(RAW) https://www.ssa.gov/oact/babynames/names.zip
+	unzip -u -d $(RAW) $(RAW)/names.zip
 
 
 # Concatenate the annual baby name data
-# Depends on: data/raw/yob????.txt files
+# Depends on: $(RAW)/yob????.txt files
 #							code/concatenate_files.R
-# Producees:	data/processed/all_names.csv
+# Produces:	data/processed/all_names.csv
 
 data/processed/all_names.csv : code/concatenate_files.R $(YOBTXT)
 	R CMD BATCH $<
 
 
 # Fills in missing data from annual survivorship data
-# Depends on: data/raw/alive_per_100k.csv
+# Depends on: $(RAW)/alive_2016_per_100k.csv
 #							code/interpolate_mortality.R
 #	Produces:		data/processed/alive_2016_annual.csv
 
-data/processed/alive_2016_annual.csv : code/interpolate_mortality.R data/raw/alive_per_100k.csv
+data/processed/alive_2016_annual.csv : code/interpolate_mortality.R $(RAW)/alive_2016_per_100k.csv
 	R CMD BATCH code/interpolate_mortality.R
 
 
