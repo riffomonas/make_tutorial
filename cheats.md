@@ -33,6 +33,7 @@ clean :
 	rm -f data/raw/*pdf
 	rm -f data/raw/*zip
 	rm -f data/processed/*.csv
+	rm -f family_report.html
 ```
 
 
