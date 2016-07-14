@@ -15,7 +15,6 @@ mortality_decade <- read.csv(file="data/raw/alive_2016_per_100k.csv", header=T, 
 mortality_annual <- data.frame(year=min(mortality_decade$year):2016,male=NA, female=NA)
 
 # fill in the data that we have for the decadial information
-merge
 mortality_annual[mortality_annual$year %in% mortality_decade$year,] <- mortality_decade
 
 # assume that everyone born in 2016 is still alive
