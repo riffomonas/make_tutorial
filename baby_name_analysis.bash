@@ -15,20 +15,20 @@ unzip -d data/raw/ data/raw/names.zip
 # Depends on: data/raw/yob????.txt files
 #							code/concatenate_files.R
 # Producees:	data/processed/all_names.csv
-R CMD BATCH code/concatenate_files.R
+R -e "source('code/concatenate_files.R')"
 
 # Fills in missing data from annual survivorship data
 # Depends on: data/raw/alive_2016_per_100k.csv.csv
 #							code/interpolate_mortality.R
 #	Produces:		data/processed/alive_2016_annual.csv
-R CMD BATCH code/interpolate_mortality.R
+R -e "source('code/interpolate_mortality.R')"
 
 # Generate counts of total and living people with each name
 # Depends on:	data/processed/alive_2016_annual.csv
 #							data/processed/all_names.csv
 #							code/get_total_and_living_name_counts.R
 #	Produces:		data/processed/total_and_living_name_counts.csv
-R CMD BATCH code/get_total_and_living_name_counts.R
+R -e "source('code/get_total_and_living_name_counts.R')"
 
 
 # Renders an Rmarkdown file that creates various plots  and
