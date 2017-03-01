@@ -31,7 +31,7 @@ $(YOBTXT) :
 # Produces:	data/processed/all_names.csv
 
 data/processed/all_names.csv : code/concatenate_files.R $(YOBTXT)
-	R CMD BATCH $<
+	R -e "source('code/concatenate_files.R')"
 
 
 # Fills in missing data from annual survivorship data
@@ -40,7 +40,7 @@ data/processed/all_names.csv : code/concatenate_files.R $(YOBTXT)
 #	Produces:		data/processed/alive_2016_annual.csv
 
 data/processed/alive_2016_annual.csv : code/interpolate_mortality.R $(RAW)/alive_2016_per_100k.csv
-	R CMD BATCH code/interpolate_mortality.R
+	R -e "source('code/interpolate_mortality.R')"
 
 
 # Generate counts of total and living people with each name
@@ -50,7 +50,7 @@ data/processed/alive_2016_annual.csv : code/interpolate_mortality.R $(RAW)/alive
 #	Produces:		data/processed/total_and_living_name_counts.csv
 
 data/processed/total_and_living_name_counts.csv : code/get_total_and_living_name_counts.R data/processed/alive_2016_annual.csv data/processed/all_names.csv
-	R CMD BATCH code/get_total_and_living_name_counts.R
+	R -e "source('code/get_total_and_living_name_counts.R')"
 
 
 # Renders an Rmarkdown file that creates various plots  and

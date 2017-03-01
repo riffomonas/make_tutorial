@@ -18,7 +18,7 @@ unzip -d data/raw/ data/raw/names.zip
 R -e "source('code/concatenate_files.R')"
 
 # Fills in missing data from annual survivorship data
-# Depends on: data/raw/alive_2016_per_100k.csv.csv
+# Depends on: data/raw/alive_2016_per_100k.csv
 #							code/interpolate_mortality.R
 #	Produces:		data/processed/alive_2016_annual.csv
 R -e "source('code/interpolate_mortality.R')"
