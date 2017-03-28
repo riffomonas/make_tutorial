@@ -1,7 +1,7 @@
 ---
 title: "Schloss family name report"
 author: "Pat Schloss"
-date: "July 14, 2016"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 
@@ -28,6 +28,8 @@ Here is the 50% confidence interval for each Schloss kid indicated by the rectan
 ```{r distro_plot, echo=F}
 n_vector <- c("Mary", "Patrick", "Joseph", "John", "Ruth", "Jacob", "Peter", "Martha")
 g_vector <- c("F", "M", "M", "M", "F", "M", "M", "F")
-age <- c(15, 13, 11, 9, 6, 4,3,1)
+age <- c(15, 13, 12, 9, 6, 4, 3, 1)
 distro_plot(n_vector, g_vector, age, data)
 ```
+
+**Note:** If you want to use other names, you will need to comment out lines 23 and 24 from `concatenate_files.R`. This will cause the scripts to run a bit slower.
