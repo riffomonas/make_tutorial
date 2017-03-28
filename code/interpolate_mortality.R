@@ -5,7 +5,9 @@
 # fraction of people still alive in 2016 that were born in a specific year. We
 # assume that anyone born in 2016 is still alive.
 
-require("zoo") # needed to get the interpolation function that fills in the
+if(!"zoo" %in% installed.packages()[,"Package"]){
+	install.packages("zoo")
+}
 library("zoo") # NA values
 
 # get SS mortality data
