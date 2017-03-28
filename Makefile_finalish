@@ -21,8 +21,8 @@ YOBTXT=$(addsuffix .txt,$(YOB))
 # Produces: slew of files named yob????.txt and a pdf file
 
 $(YOBTXT) :
-	wget -nc --no-check-certificate -P $(RAW) https://www.ssa.gov/oact/babynames/names.zip
-	unzip -u -d $(RAW) $(RAW)/names.zip
+	curl -Lo data/raw/names.zip https://www.ssa.gov/oact/babynames/names.zip
+	unzip -u -d data/raw/ data/raw/names.zip
 
 
 # Concatenate the annual baby name data

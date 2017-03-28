@@ -8,8 +8,8 @@
 
 # Depends on: website data at https://www.ssa.gov/oact/babynames/names.zip
 # Produces: slew of files named yob????.txt and a pdf file
-wget --no-check-certificate -P data/raw/ https://www.ssa.gov/oact/babynames/names.zip
-unzip -d data/raw/ data/raw/names.zip
+curl -Lo data/raw/names.zip https://www.ssa.gov/oact/babynames/names.zip
+unzip -u -d data/raw/ data/raw/names.zip
 
 # Concatenate the annual baby name data
 # Depends on: data/raw/yob????.txt files
